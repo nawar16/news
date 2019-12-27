@@ -12,15 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-/*Route::get('/users', function () {
-    $users = \App\User::paginate();
-    return new App\Http\Resources\UsersResource($users);
-});*/
 use App\Http\Resources\UsersResource as UserResource;
 use App\User;
 
 Route::get('/users', function () {
-    //return \App\User::paginate();
     $u = \App\User::paginate();
     return new UserResource($u);
 });
