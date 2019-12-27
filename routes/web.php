@@ -10,8 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//use App\Http\Resources\UsersResource as UserResource;
+//use App\User;
+
+Route::get('/user', function () {
+    return new \App\Http\Resources\UsersResource(\App\User::find(1));
+});
 Route::get('/categories', function () {
-    return \App\Category::all();
+    $user = \App\User::all();
+    return $user;
 });
 
 
