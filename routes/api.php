@@ -12,13 +12,18 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-use App\Http\Resources\UsersResource as UserResource;
+//use App\Http\Resources\UsersResource as UserResource;
 use App\User;
 
-Route::get('/users', function () {
-    $u = \App\User::paginate();
-    return new UserResource($u);
-});
+/**
+     * user related
+ */
+Route::get('/Authors', 'Api\UserController@index');
+Route::get('/Authors/{id}', 'Api\UserController@show');
+Route::get('/posts/Authors/{id}', 'Api\UserController@posts');
+Route::get('/comments/Authors/{id}', 'Api\UserController@comments');
+///////////end user related///////////
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
