@@ -14,6 +14,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'votes_up' => $faker->numberBetween(1, 100),
         'votes_down' => $faker->numberBetween(1, 100),
         'user_id' => $faker->numberBetween(1, 50),
-        'Category_id' => $faker->numberBetween(1, 15),
+        'category_id' => $faker->numberBetween(1, 15),
     ];
 });
