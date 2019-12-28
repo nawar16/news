@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\UserController as UserController;
@@ -38,7 +39,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'name' => 'required' ,
+            'email' => 'required' ,
+            'password' => 'required' ,
+        ]);
+        $u = new User();
+        $u->name = $request->get('name');
+        $u->email = $request->get('email');
+        $u->password = Hash::make($request->get('password'));
+        $u->save();
+        return new UserResource($u);
     }
     /**
      * Store a newly token.

@@ -7,6 +7,16 @@ use App\User;
 class UserObserver
 {
     /**
+     * Handle the user "creating" event.
+     *
+     * @param  \App\User  $user
+     * @return void
+     */
+    public function creating(User $user)
+    {
+        $user->api_token = bin2hex(openssl_random_pseudo_bytes(30));
+    }
+    /**
      * Handle the user "created" event.
      *
      * @param  \App\User  $user
@@ -14,7 +24,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->api_token = bin2hex(openssl_random_pseudo_bytes(30));
+        
     }
 
     /**
