@@ -65,12 +65,9 @@ class UserController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)){
-            //dd($u);
             $u = User::where('email', $request->get('email'))->first();//bring user by email if attempt successful
             $t = $u->api_token;
-            return $t;
-            //return new TokenResource(['token' -> $u->api_token]);
-            //return redirect()->intended('dashboard');
+            return new TokenResource(['token' => $t]);
         }
         return 'not found';
     }

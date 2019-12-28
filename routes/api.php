@@ -40,5 +40,9 @@ Route::post('/token', 'Api\UserController@getToken');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('update-user/{id}', 'Api\UserController@update');
+    Route::post('/postss', 'Api\PostController@store');
+    Route::post('/postss/{id}', 'Api\PostController@update');
+    Route::delete('/postss/{id}', 'Api\PostController@destroy');
 });
+
 //Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
