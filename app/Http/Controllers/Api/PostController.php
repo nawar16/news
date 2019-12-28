@@ -7,7 +7,7 @@ use App\Http\Resources\PostsResource as PostsResource;
 use App\Http\Resources\PostResource as PostResource;
 use Illuminate\Http\Request;
 use App\Post;
-
+use App\User;
 
 class PostController extends Controller
 {
@@ -40,8 +40,8 @@ class PostController extends Controller
      */
     public function show(User $id)
     {
-        //Post::find($id)
-        return new PostsResource(Post::find($id));
+        $p = Post::find($id);
+        return new PostResource($p);
         //PostResource($id);
     }
     /**
