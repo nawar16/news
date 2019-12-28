@@ -42,7 +42,18 @@ class PostController extends Controller
     {
         $p = Post::find($id);
         return new PostResource($p);
-        //PostResource($id);
+    }
+    /**
+     * Display the comments for specified post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function comments( $id)
+    {
+        $p = Post::find($id);
+        $c = $p->comments()->paginate(env('COMMENT_PER_PAGE'));
+        return new CommentsResource($c);
     }
     /**
      * Update the specified resource in storage.

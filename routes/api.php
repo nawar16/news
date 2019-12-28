@@ -31,6 +31,7 @@ Route::get('/categories', 'Api\CategoryController@index');
 Route::get('/posts/categories/{id}', 'Api\CategoryController@posts');
 Route::get('/posts', 'Api\PostController@index');
 Route::get('/posts/{id}', 'Api\PostController@show');
+Route::get('/comments/posts/{id}', 'Api\PostController@comments');
 ///////////end post related///////////
 
 
