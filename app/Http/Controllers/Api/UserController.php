@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\UserController as UserController;
@@ -9,6 +10,7 @@ use App\Http\Resources\UsersResource as UsersResource;
 use App\Http\Resources\UserResource as UserResource;
 use App\Http\Resources\AuthorPostsResource as AuthorPostsResource;
 use App\Http\Resources\AuthorCommentsResource as AuthorCommentsResource;
+use App\Http\Resources\TokenResource as TokenResource;
 use App\User;
 
 class UserController extends Controller
@@ -37,6 +39,29 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+    }
+    /**
+     * Store a newly token.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getToken(Request $request)
+    {
+        $request -> validate([
+            'email' => 'required' ,
+            'password' => 'required' ,
+        ]);
+        $credentials = $request->only('email', 'password');
+        if(Auth::attempt($credentials)){
+            //dd($u);
+            $u = User::where('email', $request->get('email'))->first();//bring user by email if attempt successful
+            $t = $u->api_token;
+            return $t;
+            //return new TokenResource(['token' -> $u->api_token]);
+            //return redirect()->intended('dashboard');
+        }
+        return 'not found';
     }
 
     /**
