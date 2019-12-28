@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\UserController as UserController;
 use App\Http\Resources\UsersResource as UsersResource;
 use App\Http\Resources\UserResource as UserResource;
 use App\Http\Resources\AuthorPostsResource as AuthorPostsResource;

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\UserController as UserController;
 use App\Http\Resources\PostsResource as PostsResource;
 use App\Http\Resources\PostResource as PostResource;
+use App\Http\Resources\CommentsResource as CommentsResource;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;

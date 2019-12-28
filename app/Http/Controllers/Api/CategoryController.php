@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\UserController as UserController;
 use App\Http\Resources\CategoriesResource as CategoriesResource;
 use App\Http\Resources\PostsResource as PostsResource;
 use Illuminate\Http\Request;
