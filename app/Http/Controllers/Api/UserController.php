@@ -79,9 +79,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $id)
+    public function show( $id)
     {
-        return new UserResource($id);
+        $u = User::find($id);
+        //with(['comments', 'posts'])->where('id', $id)->get();
+        return new UserResource($u);
     }
     /**
      * Display the posts of the specified author.

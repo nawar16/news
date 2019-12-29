@@ -23,7 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return new PostsResource(Post::paginate(env('POST_PER_PAGE')));
+        $p = Post::with(['comments', 'author', 'category'])->paginate(env('POST_PER_PAGE'));
+        return new PostsResource($p);
     }
 
     /**
@@ -76,9 +77,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $id)
+    public function show( $id)
     {
-        $p = Post::find($id);
+        $p = Post::with(['comments', 'author', 'category'])->where('id', $id)->get();
         return new PostResource($p);
     }
     /**
