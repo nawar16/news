@@ -43,6 +43,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/postss', 'Api\PostController@store');
     Route::post('/postss/{id}', 'Api\PostController@update');
     Route::delete('/postss/{id}', 'Api\PostController@destroy');
+    Route::post('/comments/posts/{id}', 'Api\CommentController@store');
 });
 
 //Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
