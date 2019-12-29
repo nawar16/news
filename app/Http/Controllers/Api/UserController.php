@@ -12,6 +12,7 @@ use App\Http\Resources\UserResource as UserResource;
 use App\Http\Resources\AuthorPostsResource as AuthorPostsResource;
 use App\Http\Resources\AuthorCommentsResource as AuthorCommentsResource;
 use App\Http\Resources\TokenResource as TokenResource;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 
 class UserController extends Controller
@@ -120,8 +121,16 @@ class UserController extends Controller
             $u->name = $request->get('name');
 
         }
-        if($request->has('avatar')){
-            $u->avatar = $request->get('avatar');
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().$avatar->getClientOriginalName();
+            $path = '/images';
+            Storage::disk('public')->putFileAs(
+                $path,
+                $avatar,
+                $filename
+            );
+        $u->avatar = url('/').'/storage/app/public'.$path.'/'.$filename;
         }
         $u->save();
         return new UserResource($u);
